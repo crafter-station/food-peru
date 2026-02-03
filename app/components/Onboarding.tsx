@@ -449,7 +449,7 @@ export default function Onboarding() {
                 min={50}
                 max={500}
                 step={10}
-                onValueChange={(value) =>
+                onValueChange={(value: number[]) =>
                   setData((prev) => ({ ...prev, weeklyBudget: value[0] }))
                 }
                 className="py-4"
