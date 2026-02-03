@@ -16,9 +16,11 @@ import {
   Sparkles,
   Plus,
   Minus,
+  Search,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
@@ -161,6 +163,7 @@ export default function Onboarding() {
   });
   const [noChildren, setNoChildren] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [deptSearch, setDeptSearch] = useState("");
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
@@ -423,6 +426,7 @@ export default function Onboarding() {
         );
 
       case "budget":
+        const dailyBudget = Math.round(data.weeklyBudget / 7);
         return (
           <div className="space-y-8">
             <motion.div
@@ -435,6 +439,9 @@ export default function Onboarding() {
                 S/ {data.weeklyBudget}
               </span>
               <p className="text-gray-400 mt-1">por semana</p>
+              <p className="text-gray-500 text-sm mt-2">
+                Aprox. <span className="font-semibold text-[#FFB800]">S/ {dailyBudget}</span> por día
+              </p>
             </motion.div>
             <div className="px-2">
               <Slider
@@ -527,30 +534,51 @@ export default function Onboarding() {
         );
 
       case "departamento":
+        const filteredDepts = DEPARTAMENTOS.filter((dept) =>
+          dept.label.toLowerCase().includes(deptSearch.toLowerCase())
+        );
         return (
-          <div className="grid grid-cols-2 gap-2 max-h-[400px] overflow-y-auto pr-1">
-            {DEPARTAMENTOS.map((dept) => {
-              const isSelected = data.departamento === dept.id;
-              return (
-                <motion.button
-                  key={dept.id}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() =>
-                    setData((prev) => ({ ...prev, departamento: dept.id }))
-                  }
-                  className={`p-3 rounded-xl border-2 transition-all flex items-center justify-between ${
-                    isSelected
-                      ? "border-[#FFB800] bg-[#FFF8E1]"
-                      : "border-gray-200 bg-white hover:border-gray-300"
-                  }`}
-                >
-                  <span className={`font-medium text-sm ${isSelected ? "text-gray-800" : "text-gray-600"}`}>
-                    {dept.label}
-                  </span>
-                  {isSelected && <Check className="w-4 h-4 text-[#FFB800]" />}
-                </motion.button>
-              );
-            })}
+          <div className="space-y-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Buscar departamento..."
+                value={deptSearch}
+                onChange={(e) => setDeptSearch(e.target.value)}
+                className="pl-10 h-12 rounded-xl border-gray-200 bg-white"
+              />
+            </div>
+            <div className="space-y-2 max-h-[320px] overflow-y-auto pr-1">
+              {filteredDepts.map((dept) => {
+                const isSelected = data.departamento === dept.id;
+                return (
+                  <motion.button
+                    key={dept.id}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      setData((prev) => ({ ...prev, departamento: dept.id }));
+                      setDeptSearch("");
+                    }}
+                    className={`w-full p-4 rounded-xl border-2 transition-all flex items-center justify-between ${
+                      isSelected
+                        ? "border-[#FFB800] bg-[#FFF8E1]"
+                        : "border-gray-200 bg-white hover:border-gray-300"
+                    }`}
+                  >
+                    <span className={`font-medium ${isSelected ? "text-gray-800" : "text-gray-600"}`}>
+                      {dept.label}
+                    </span>
+                    {isSelected && <Check className="w-5 h-5 text-[#FFB800]" />}
+                  </motion.button>
+                );
+              })}
+              {filteredDepts.length === 0 && (
+                <p className="text-center text-gray-400 py-4">
+                  No se encontró el departamento
+                </p>
+              )}
+            </div>
           </div>
         );
 
