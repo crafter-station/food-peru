@@ -1,144 +1,97 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Fitia-inspired color palette - Yellow/Orange */
-  --primary: #FFB800;
-  --primary-dark: #E5A600;
-  --primary-light: #FFF8E1;
-  --accent: #FF6B6B;
-  --accent-dark: #E85555;
-  --accent-light: #FFE8E8;
-  --orange: #FFA726;
-  --orange-light: #FFF3E0;
+  /* Brand Colors - Warm Peruvian Palette */
+  --background: #FDF8F3;
+  --foreground: #2D2A26;
   
-  --radius: 1rem;
+  /* Primary */
+  --primary: #E5A93D;
+  --primary-hover: #D49A2E;
+  --primary-light: #FEF3E2;
   
-  /* Light theme - Fitia style */
-  --background: #FFFFFF;
-  --foreground: #1A1A2E;
+  /* Secondary */
+  --secondary: #8B7355;
+  --secondary-light: #A69076;
+  
+  /* Accent Colors for Feature Cards */
+  --accent-yellow: #FEF9E7;
+  --accent-yellow-border: #F5E6B8;
+  --accent-green: #E8F5E9;
+  --accent-green-border: #C8E6C9;
+  --accent-purple: #F3E5F5;
+  --accent-purple-border: #E1BEE7;
+  --accent-blue: #E3F2FD;
+  --accent-blue-border: #BBDEFB;
+  --accent-orange: #FFF3E0;
+  --accent-orange-border: #FFE0B2;
+  --accent-pink: #FCE4EC;
+  --accent-pink-border: #F8BBD9;
+  
+  /* Semantic */
+  --success: #4CAF50;
+  --muted: #9E9E9E;
+  --muted-foreground: #6B6B6B;
+  
+  /* Surfaces */
   --card: #FFFFFF;
-  --card-foreground: #1A1A2E;
-  --popover: #FFFFFF;
-  --popover-foreground: #1A1A2E;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F5F7FA;
-  --secondary-foreground: #1A1A2E;
-  --muted: #F5F7FA;
-  --muted-foreground: #6B7280;
-  --accent-foreground: #FFFFFF;
-  --destructive: #FF6B6B;
-  --border: #E5E7EB;
-  --input: #F5F7FA;
-  --ring: #FFB800;
+  --card-border: #F0E6DC;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-success: var(--success);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-yellow-border: var(--accent-yellow-border);
+  --color-accent-green: var(--accent-green);
+  --color-accent-green-border: var(--accent-green-border);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-purple-border: var(--accent-purple-border);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-blue-border: var(--accent-blue-border);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-orange-border: var(--accent-orange-border);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-pink-border: var(--accent-pink-border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-
-  /* Fitia colors */
-  --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-primary-light: var(--primary-light);
-  --color-accent: var(--accent);
-  --color-accent-dark: var(--accent-dark);
-  --color-accent-light: var(--accent-light);
-  --color-orange: var(--orange);
-  --color-orange-light: var(--orange-light);
-  
-  /* shadcn theme mappings */
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-}
-
-* {
-  box-sizing: border-box;
 }
 
 body {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Custom scrollbar - light theme */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for a polished feel */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F5F7FA;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D1D5DB;
-  border-radius: 3px;
+  background: var(--card-border);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9CA3AF;
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, #FFA000 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Soft shadow for cards */
-.card-shadow {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 24px rgba(0, 0, 0, 0.06);
-}
-
-.card-shadow-hover {
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.card-shadow-hover:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-/* Primary button glow */
-.btn-primary-glow {
-  box-shadow: 0 4px 14px rgba(255, 184, 0, 0.4);
-}
-
-.btn-primary-glow:hover {
-  box-shadow: 0 6px 20px rgba(255, 184, 0, 0.5);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  background: var(--muted);
 }

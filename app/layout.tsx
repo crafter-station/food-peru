@@ -13,8 +13,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Food Peru - Planifica tus comidas",
-  description: "Planificador de comidas personalizado con recetas peruanas",
+  title: "PlatoSano | Planifica tus comidas con recetas peruanas saludables",
+  description:
+    "Planifica las comidas de tu familia con recetas nutritivas y económicas del Instituto Nacional de Salud (CENAN). Ahorra tiempo, dinero y come mejor.",
+  keywords: [
+    "planificador de comidas",
+    "recetas peruanas",
+    "nutrición familiar",
+    "CENAN",
+    "INS Perú",
+    "comida saludable",
+    "menú semanal",
+    "recetas económicas",
+    "PlatoSano",
+  ],
+  authors: [{ name: "PlatoSano" }],
+  openGraph: {
+    title: "PlatoSano | Planifica tus comidas con recetas peruanas saludables",
+    description:
+      "Recetas nutritivas y económicas respaldadas por el Instituto Nacional de Salud del Perú.",
+    type: "website",
+    locale: "es_PE",
+  },
 };
 
 export default function RootLayout({
