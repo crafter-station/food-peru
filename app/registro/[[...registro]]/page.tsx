@@ -47,7 +47,7 @@ export default function RegistroPage() {
                 borderRadius: "0.75rem",
               },
             }}
-            forceRedirectUrl="/dashboard"
+            forceRedirectUrl="/onboarding"
             signInUrl="/login"
           />
 

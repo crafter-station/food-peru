@@ -45,3 +45,6 @@ menus.json
 dump.sql
 pdf_images/
 recipes.pdf
+
+# clerk configuration (can include secrets)
+/.clerk/

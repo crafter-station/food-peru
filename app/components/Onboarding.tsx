@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Users,
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { saveOnboardingData } from "@/app/actions/onboarding";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
@@ -149,6 +151,7 @@ const steps = [
 ];
 
 export default function Onboarding() {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [data, setData] = useState<OnboardingData>({
@@ -163,14 +166,33 @@ export default function Onboarding() {
   });
   const [noChildren, setNoChildren] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [deptSearch, setDeptSearch] = useState("");
 
-  const nextStep = () => {
+  const nextStep = async () => {
     if (currentStep < steps.length - 1) {
       setDirection(1);
       setCurrentStep((prev) => prev + 1);
     } else {
-      setIsComplete(true);
+      // Último paso: guardar datos y completar
+      setIsSaving(true);
+      try {
+        await saveOnboardingData({
+          householdSize: data.householdSize,
+          children: data.children,
+          cookingTime: data.cookingTime,
+          weeklyBudget: data.weeklyBudget,
+          shoppingPlace: data.shoppingPlace,
+          restrictions: data.restrictions,
+          departamento: data.departamento,
+        });
+        setIsComplete(true);
+      } catch (error) {
+        console.error("Error guardando onboarding:", error);
+        // TODO: Mostrar mensaje de error al usuario
+      } finally {
+        setIsSaving(false);
+      }
     }
   };
 
@@ -622,6 +644,7 @@ export default function Onboarding() {
           >
             <Button
               size="lg"
+              onClick={() => router.push("/dashboard")}
               className="h-14 px-8 text-lg bg-[#FFB800] hover:bg-[#E5A600] text-white font-semibold rounded-2xl btn-primary-glow"
             >
               Ver mis recetas
@@ -710,11 +733,26 @@ export default function Onboarding() {
         <div className="max-w-lg mx-auto">
           <Button
             onClick={nextStep}
+            disabled={isSaving}
             size="lg"
-            className="w-full h-14 text-lg bg-[#FFB800] hover:bg-[#E5A600] text-white font-semibold rounded-2xl btn-primary-glow"
+            className="w-full h-14 text-lg bg-[#FFB800] hover:bg-[#E5A600] text-white font-semibold rounded-2xl btn-primary-glow disabled:opacity-70"
           >
-            {currentStep === steps.length - 1 ? "Finalizar" : "Continuar"}
-            <ArrowRight className="w-5 h-5 ml-2" />
+            {isSaving ? (
+              <>
+                <span className="animate-spin mr-2">⏳</span>
+                Guardando...
+              </>
+            ) : currentStep === steps.length - 1 ? (
+              <>
+                Finalizar
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </>
+            ) : (
+              <>
+                Continuar
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </>
+            )}
           </Button>
         </div>
       </div>

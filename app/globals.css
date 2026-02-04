@@ -95,3 +95,18 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted);
 }
+
+/* Onboarding styles */
+.btn-primary-glow {
+  box-shadow: 0 4px 14px 0 rgba(229, 169, 61, 0.39);
+  transition: all 0.2s ease;
+}
+
+.btn-primary-glow:hover {
+  box-shadow: 0 6px 20px 0 rgba(229, 169, 61, 0.5);
+  transform: translateY(-1px);
+}
+
+.card-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}

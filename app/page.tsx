@@ -911,13 +911,13 @@ function FinalCTASection() {
         </p>
 
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
+          <Link
             href="/registro"
             className="inline-flex h-16 items-center justify-center gap-3 rounded-full bg-white px-10 text-xl font-bold text-primary shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
           >
             <span>Crear mi cuenta gratis</span>
             <span className="text-2xl">→</span>
-          </a>
+          </Link>
         </div>
 
         <p className="mt-6 text-sm text-white/60">
@@ -1034,6 +1034,7 @@ function Footer() {
   );
 }
 
+import Link from "next/link";
 import Header from "@/app/components/Header";
 
 /* =============================================================================
