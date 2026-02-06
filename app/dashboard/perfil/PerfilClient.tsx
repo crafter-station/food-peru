@@ -256,7 +256,7 @@ export default function PerfilClient({
 
         {/* App Info */}
         <div className="text-center text-sm text-muted-foreground">
-          <p>PlatoSano v1.0.0</p>
+          <p>Pachamesa v1.0.0</p>
           <p className="mt-1">
             Datos de recetas por{" "}
             <span className="font-medium text-foreground">CENAN / INS Perú</span>

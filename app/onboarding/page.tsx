@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import Onboarding from "@/app/components/Onboarding";
 
 export const metadata: Metadata = {
-  title: "Configura tu perfil | PlatoSano",
+  title: "Configura tu perfil | Pachamesa",
   description:
     "Cuéntanos sobre tu familia para personalizar tus recetas y menús.",
 };

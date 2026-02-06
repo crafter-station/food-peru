@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Home,
+  Leaf,
   Search,
   ShoppingCart,
   Calendar,
@@ -36,10 +37,10 @@ function DesktopSidebar({ currentPath }: Readonly<{ currentPath: string }>) {
       {/* Logo */}
       <div className="p-6 border-b border-card-border">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-xl">
-            🍲
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-light">
+            <Leaf className="h-5 w-5 text-primary" />
           </div>
-          <span className="text-xl font-bold text-foreground">PlatoSano</span>
+          <span className="text-xl font-bold text-foreground">Pachamesa</span>
         </Link>
       </div>
 
@@ -196,10 +197,10 @@ function MobileHeader({
       <div className="px-4 py-3">
         <div className="flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-lg">
-              🍲
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-light">
+              <Leaf className="h-5 w-5 text-primary" />
             </div>
-            <span className="text-xl font-bold text-foreground">PlatoSano</span>
+            <span className="text-xl font-bold text-foreground">Pachamesa</span>
           </Link>
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground hidden sm:block">Hola, {userName}</span>

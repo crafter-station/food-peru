@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { SignUp } from "@clerk/nextjs";
 import Link from "next/link";
+import { Leaf } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Crear cuenta | PlatoSano",
+  title: "Crear cuenta | Pachamesa",
   description:
-    "Regístrate en PlatoSano para planificar tus comidas con recetas peruanas saludables.",
+    "Registrate en Pachamesa para planificar tus comidas con recetas peruanas saludables.",
 };
 
 export default function RegistroPage() {
@@ -15,12 +16,8 @@ export default function RegistroPage() {
       <header className="border-b border-card-border bg-card/80 backdrop-blur-sm">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-lg">
-              <span role="img" aria-label="PlatoSano logo">
-                🍲
-              </span>
-            </div>
-            <span className="text-xl font-bold text-foreground">PlatoSano</span>
+            <Leaf className="h-6 w-6 text-primary" />
+            <span className="text-xl font-bold text-foreground">Pachamesa</span>
           </Link>
         </div>
       </header>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Leaf } from "lucide-react";
 import {
   SignedIn,
   SignedOut,
@@ -13,8 +14,13 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl">🍽️</span>
-          <span className="text-xl font-bold text-foreground">PlatoSano</span>
+          <Leaf className="h-6 w-6 text-primary" />
+          <div className="flex flex-col leading-none">
+            <span className="text-lg font-bold text-foreground">Pachamesa</span>
+            <span className="hidden text-[10px] font-medium text-primary sm:block">
+              De la tierra a tu mesa
+            </span>
+          </div>
         </Link>
 
         {/* Navigation */}
@@ -23,19 +29,19 @@ export default function Header() {
             href="#como-funciona"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
-            Cómo funciona
+            Como funciona
           </a>
           <a
-            href="/recetas"
+            href="#recetas"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             Recetas
           </a>
           <a
-            href="/sobre-cenan"
+            href="#confianza"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
-            Sobre CENAN
+            Respaldo
           </a>
         </nav>
 
@@ -46,7 +52,7 @@ export default function Header() {
               href="/login"
               className="hidden text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:block"
             >
-              Iniciar sesión
+              Iniciar sesion
             </Link>
             <Link
               href="/registro"

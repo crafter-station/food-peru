@@ -15,25 +15,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PlatoSano | Planifica tus comidas con recetas peruanas saludables",
+  title: "Pachamesa | De la tierra a tu mesa - Recetas peruanas saludables",
   description:
-    "Planifica las comidas de tu familia con recetas nutritivas y económicas del Instituto Nacional de Salud (CENAN). Ahorra tiempo, dinero y come mejor.",
+    "Planifica las comidas de tu familia con recetas nutritivas y economicas del Instituto Nacional de Salud (CENAN). Ahorra tiempo, dinero y come mejor.",
   keywords: [
     "planificador de comidas",
     "recetas peruanas",
-    "nutrición familiar",
+    "nutricion familiar",
     "CENAN",
-    "INS Perú",
+    "INS Peru",
     "comida saludable",
-    "menú semanal",
-    "recetas económicas",
-    "PlatoSano",
+    "menu semanal",
+    "recetas economicas",
+    "Pachamesa",
+    "comida peruana",
+    "alimentacion saludable",
   ],
-  authors: [{ name: "PlatoSano" }],
+  authors: [{ name: "Pachamesa" }],
   openGraph: {
-    title: "PlatoSano | Planifica tus comidas con recetas peruanas saludables",
+    title: "Pachamesa | De la tierra a tu mesa - Recetas peruanas saludables",
     description:
-      "Recetas nutritivas y económicas respaldadas por el Instituto Nacional de Salud del Perú.",
+      "Recetas nutritivas y economicas respaldadas por el Instituto Nacional de Salud del Peru. Planifica las comidas de tu familia.",
     type: "website",
     locale: "es_PE",
   },

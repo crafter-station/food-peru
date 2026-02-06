@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import DashboardHomeClient from "./DashboardHomeClient";
 
 export const metadata: Metadata = {
-  title: "Mi Plan | PlatoSano",
+  title: "Mi Plan | Pachamesa",
   description: "Tu planificador de comidas personalizado.",
 };
 
