@@ -5,7 +5,6 @@ import {
   Check,
   Plus,
   Trash2,
-  ShoppingCart,
   Share2,
   Download,
   ChevronDown,

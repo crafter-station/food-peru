@@ -3,12 +3,9 @@
 import { useState } from "react";
 import {
   Search,
-  Filter,
   Clock,
   Flame,
   Heart,
-  ChevronDown,
-  X,
   SlidersHorizontal,
 } from "lucide-react";
 import DashboardShell from "../components/DashboardShell";

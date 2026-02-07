@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   ChevronLeft,
   ChevronRight,
@@ -10,7 +9,6 @@ import {
   Clock,
   Flame,
   ShoppingCart,
-  Calendar,
   MoreHorizontal,
   Sparkles,
 } from "lucide-react";

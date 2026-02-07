@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
-  User,
   Users,
   MapPin,
   Wallet,
@@ -154,9 +154,11 @@ export default function PerfilClient({
         <div className="bg-card rounded-2xl border border-card-border p-6">
           <div className="flex items-center gap-4">
             {userImage ? (
-              <img
+              <Image
                 src={userImage}
                 alt={userName}
+                width={64}
+                height={64}
                 className="w-16 h-16 rounded-full object-cover"
               />
             ) : (
