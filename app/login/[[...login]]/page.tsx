@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Leaf } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Iniciar sesion | Pachamesa",
+  title: "Iniciar sesion | Misky",
   description:
-    "Inicia sesion en tu cuenta de Pachamesa para acceder a tus planes de comidas y recetas guardadas.",
+    "Inicia sesion en tu cuenta de Misky para acceder a tus planes de comidas y recetas guardadas.",
 };
 
 export default function LoginPage() {
@@ -17,7 +17,7 @@ export default function LoginPage() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-2">
             <Leaf className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold text-foreground">Pachamesa</span>
+            <span className="text-xl font-bold text-foreground">Misky</span>
           </Link>
         </div>
       </header>

@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "scrap": "bun scrap.ts",
-    "to-sql": "bun to_normalized_sql.ts"
+    "to-sql": "bun to_normalized_sql.ts",
+    "db:generate": "bunx drizzle-kit generate",
+    "db:migrate": "bunx drizzle-kit migrate",
+    "db:push": "bunx drizzle-kit push",
+    "db:studio": "bunx drizzle-kit studio",
+    "db:seed": "bun db/seed.ts"
   },
   "dependencies": {
     "@clerk/localizations": "^3.35.3",

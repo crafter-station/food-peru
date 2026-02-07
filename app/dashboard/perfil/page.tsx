@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import PerfilClient from "./PerfilClient";
 
 export const metadata: Metadata = {
-  title: "Mi Perfil | Pachamesa",
+  title: "Mi Perfil | Misky",
   description: "Configura tu perfil y preferencias.",
 };
 

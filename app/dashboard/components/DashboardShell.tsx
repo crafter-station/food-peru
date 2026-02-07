@@ -40,7 +40,7 @@ function DesktopSidebar({ currentPath }: Readonly<{ currentPath: string }>) {
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-light">
             <Leaf className="h-5 w-5 text-primary" />
           </div>
-          <span className="text-xl font-bold text-foreground">Pachamesa</span>
+          <span className="text-xl font-bold text-foreground">Misky</span>
         </Link>
       </div>
 
@@ -200,7 +200,7 @@ function MobileHeader({
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-light">
               <Leaf className="h-5 w-5 text-primary" />
             </div>
-            <span className="text-xl font-bold text-foreground">Pachamesa</span>
+            <span className="text-xl font-bold text-foreground">Misky</span>
           </Link>
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground hidden sm:block">Hola, {userName}</span>

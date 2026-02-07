@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import Onboarding from "@/app/components/Onboarding";
 
 export const metadata: Metadata = {
-  title: "Configura tu perfil | Pachamesa",
+  title: "Configura tu perfil | Misky",
   description:
     "Cuéntanos sobre tu familia para personalizar tus recetas y menús.",
 };

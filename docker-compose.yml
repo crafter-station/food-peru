@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: misky-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: misky
+      POSTGRES_PASSWORD: misky123
+      POSTGRES_DB: misky
+    volumes:
+      - misky_pgdata:/var/lib/postgresql/data
+
+volumes:
+  misky_pgdata:

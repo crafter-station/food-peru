@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import ComprasClient from "./ComprasClient";
 
 export const metadata: Metadata = {
-  title: "Lista de Compras | Pachamesa",
+  title: "Lista de Compras | Misky",
   description: "Tu lista de compras para la semana.",
 };
 

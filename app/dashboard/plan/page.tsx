@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import PlanClient from "./PlanClient";
 
 export const metadata: Metadata = {
-  title: "Plan Semanal | Pachamesa",
+  title: "Plan Semanal | Misky",
   description: "Tu planificación de comidas para la semana.",
 };
 

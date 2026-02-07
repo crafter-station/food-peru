@@ -1,42 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand Colors - Pachamama Earth Palette */
+  /* Brand Colors - Warm Peruvian Palette */
   --background: #FDF8F3;
   --foreground: #2D2A26;
-
-  /* Primary - Verde Bosque (naturaleza, salud, Pachamama) */
-  --primary: #2D6A4F;
-  --primary-hover: #1B4332;
-  --primary-light: #D8F3DC;
-
-  /* Secondary - Terracota (tierra, cerámica, economía peruana) */
-  --secondary: #C1694F;
-  --secondary-hover: #A85842;
-  --secondary-light: #F7E5DD;
-
+  
+  /* Primary */
+  --primary: #E5A93D;
+  --primary-hover: #D49A2E;
+  --primary-light: #FEF3E2;
+  
+  /* Secondary */
+  --secondary: #8B7355;
+  --secondary-light: #A69076;
+  
   /* Accent Colors for Feature Cards */
   --accent-yellow: #FEF9E7;
   --accent-yellow-border: #F5E6B8;
-  --accent-green: #D8F3DC;
-  --accent-green-border: #B7E4C7;
+  --accent-green: #E8F5E9;
+  --accent-green-border: #C8E6C9;
   --accent-purple: #F3E5F5;
   --accent-purple-border: #E1BEE7;
   --accent-blue: #E3F2FD;
   --accent-blue-border: #BBDEFB;
   --accent-orange: #FFF3E0;
   --accent-orange-border: #FFE0B2;
-  --accent-terracotta: #F7E5DD;
-  --accent-terracotta-border: #EFD3C6;
-
+  --accent-pink: #FCE4EC;
+  --accent-pink-border: #F8BBD9;
+  
   /* Semantic */
-  --success: #40916C;
+  --success: #4CAF50;
   --muted: #9E9E9E;
   --muted-foreground: #6B6B6B;
-
+  
   /* Surfaces */
   --card: #FFFFFF;
-  --card-border: #E8DDD4;
+  --card-border: #F0E6DC;
 }
 
 @theme inline {
@@ -46,7 +45,6 @@
   --color-primary-hover: var(--primary-hover);
   --color-primary-light: var(--primary-light);
   --color-secondary: var(--secondary);
-  --color-secondary-hover: var(--secondary-hover);
   --color-secondary-light: var(--secondary-light);
   --color-card: var(--card);
   --color-card-border: var(--card-border);
@@ -63,8 +61,8 @@
   --color-accent-blue-border: var(--accent-blue-border);
   --color-accent-orange: var(--accent-orange);
   --color-accent-orange-border: var(--accent-orange-border);
-  --color-accent-terracotta: var(--accent-terracotta);
-  --color-accent-terracotta-border: var(--accent-terracotta-border);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-pink-border: var(--accent-pink-border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -100,12 +98,12 @@ html {
 
 /* Onboarding styles */
 .btn-primary-glow {
-  box-shadow: 0 4px 14px 0 rgba(45, 106, 79, 0.3);
+  box-shadow: 0 4px 14px 0 rgba(229, 169, 61, 0.39);
   transition: all 0.2s ease;
 }
 
 .btn-primary-glow:hover {
-  box-shadow: 0 6px 20px 0 rgba(45, 106, 79, 0.45);
+  box-shadow: 0 6px 20px 0 rgba(229, 169, 61, 0.5);
   transform: translateY(-1px);
 }
 

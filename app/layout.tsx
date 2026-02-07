@@ -15,27 +15,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pachamesa | De la tierra a tu mesa - Recetas peruanas saludables",
+  title: "Misky — ¿Qué comemos hoy?",
   description:
-    "Planifica las comidas de tu familia con recetas nutritivas y economicas del Instituto Nacional de Salud (CENAN). Ahorra tiempo, dinero y come mejor.",
+    "Misky te ayuda a planear la comida de tu familia sin complicarte. Recetas con ingredientes del mercado, porciones exactas y sin gastar de más.",
   keywords: [
     "planificador de comidas",
     "recetas peruanas",
-    "nutricion familiar",
-    "CENAN",
-    "INS Peru",
-    "comida saludable",
-    "menu semanal",
-    "recetas economicas",
-    "Pachamesa",
+    "qué cocinar hoy",
+    "comida familiar",
+    "recetas fáciles",
+    "menú semanal",
+    "recetas económicas",
+    "Misky",
     "comida peruana",
-    "alimentacion saludable",
   ],
-  authors: [{ name: "Pachamesa" }],
+  authors: [{ name: "Misky" }],
   openGraph: {
-    title: "Pachamesa | De la tierra a tu mesa - Recetas peruanas saludables",
+    title: "Misky — ¿Qué comemos hoy?",
     description:
-      "Recetas nutritivas y economicas respaldadas por el Instituto Nacional de Salud del Peru. Planifica las comidas de tu familia.",
+      "Planea la comida de tu familia sin complicarte. Recetas con ingredientes del mercado, porciones exactas y sin gastar de más.",
     type: "website",
     locale: "es_PE",
   },

@@ -46,5 +46,11 @@ dump.sql
 pdf_images/
 recipes.pdf
 
+# uploaded PDFs
+/uploads/
+
+# drizzle migrations
+/drizzle/
+
 # clerk configuration (can include secrets)
 /.clerk/

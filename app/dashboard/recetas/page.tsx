@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import RecetasClient from "./RecetasClient";
 
 export const metadata: Metadata = {
-  title: "Recetas | Pachamesa",
+  title: "Recetas | Misky",
   description: "Explora más de 500 recetas peruanas saludables.",
 };
 
