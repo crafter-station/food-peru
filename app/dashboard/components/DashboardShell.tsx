@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
 import {
   Home,
   Leaf,
@@ -204,6 +205,11 @@ function MobileHeader({
           </Link>
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground hidden sm:block">Hola, {userName}</span>
+            <UserButton
+              appearance={{
+                elements: { avatarBox: "h-9 w-9" },
+              }}
+            />
             <button
               onClick={onMenuToggle}
               className="p-2 hover:bg-accent-yellow/50 rounded-xl transition-colors"
@@ -234,11 +240,13 @@ function DesktopHeader({
         <h1 className="text-2xl font-bold text-foreground">{title}</h1>
         {subtitle && <p className="text-muted-foreground mt-1">{subtitle}</p>}
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <span className="text-sm text-muted-foreground">Hola, {userName}</span>
-        <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
-          <span className="text-sm font-medium text-primary">{userName.charAt(0)}</span>
-        </div>
+        <UserButton
+          appearance={{
+            elements: { avatarBox: "h-10 w-10" },
+          }}
+        />
       </div>
     </header>
   );
