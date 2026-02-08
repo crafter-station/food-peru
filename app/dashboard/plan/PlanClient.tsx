@@ -376,10 +376,10 @@ export default function PlanClient({ userName }: Readonly<{ userName: string }>)
             <Sparkles className="w-5 h-5" />
             Autocompletar semana
           </button>
-          <button className="flex-1 py-4 border-2 border-primary text-primary font-semibold rounded-2xl flex items-center justify-center gap-2 hover:bg-primary-light transition-colors">
+          {/* <button className="flex-1 py-4 border-2 border-primary text-primary font-semibold rounded-2xl flex items-center justify-center gap-2 hover:bg-primary-light transition-colors">
             <ShoppingCart className="w-5 h-5" />
             Generar lista de compras
-          </button>
+          </button> */}
         </div>
       </div>
     </DashboardShell>

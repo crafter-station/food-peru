@@ -271,7 +271,7 @@ export default function PerfilClient({
             </button>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-card-border">
+          {/* <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-card-border">
             <div className="text-center">
               <p className="text-2xl font-bold text-primary">12</p>
               <p className="text-xs text-muted-foreground">Recetas guardadas</p>
@@ -284,7 +284,7 @@ export default function PerfilClient({
               <p className="text-2xl font-bold text-secondary">S/ 420</p>
               <p className="text-xs text-muted-foreground">Ahorro estimado</p>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Preferences */}
