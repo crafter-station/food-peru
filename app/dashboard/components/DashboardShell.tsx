@@ -23,7 +23,7 @@ const NAV_ITEMS = [
   { id: "perfil", label: "Perfil", icon: User, href: "/dashboard/perfil" },
 ];
 
-// Desktop Sidebar
+/* ─── Desktop Sidebar ─── */
 function DesktopSidebar({ currentPath }: Readonly<{ currentPath: string }>) {
   const getActiveItem = () => {
     if (currentPath === "/dashboard") return "inicio";
@@ -34,9 +34,9 @@ function DesktopSidebar({ currentPath }: Readonly<{ currentPath: string }>) {
   const activeItem = getActiveItem();
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 bg-card border-r border-card-border h-screen sticky top-0">
+    <aside className="hidden lg:flex flex-col w-64 shrink-0 h-screen sticky top-0">
       {/* Logo */}
-      <div className="p-6 border-b border-card-border">
+      <div className="p-6">
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-light">
             <Leaf className="h-5 w-5 text-primary" />
@@ -46,8 +46,8 @@ function DesktopSidebar({ currentPath }: Readonly<{ currentPath: string }>) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
-        <ul className="space-y-2">
+      <nav className="flex-1 px-4">
+        <ul className="space-y-1">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive = item.id === activeItem;
@@ -71,7 +71,7 @@ function DesktopSidebar({ currentPath }: Readonly<{ currentPath: string }>) {
       </nav>
 
       {/* User */}
-      <div className="p-4 border-t border-card-border">
+      <div className="p-4">
         <Link
           href="/dashboard/perfil"
           className="flex items-center gap-3 px-4 py-3 rounded-xl bg-accent-yellow/30 hover:bg-accent-yellow/50 transition-colors"
@@ -89,7 +89,7 @@ function DesktopSidebar({ currentPath }: Readonly<{ currentPath: string }>) {
   );
 }
 
-// Bottom Navigation (Mobile)
+/* ─── Bottom Navigation (Mobile) ─── */
 function BottomNavigation({ currentPath }: Readonly<{ currentPath: string }>) {
   const getActiveItem = () => {
     if (currentPath === "/dashboard") return "inicio";
@@ -126,7 +126,7 @@ function BottomNavigation({ currentPath }: Readonly<{ currentPath: string }>) {
   );
 }
 
-// Mobile Menu Drawer
+/* ─── Mobile Menu Drawer ─── */
 function MobileMenuDrawer({
   isOpen,
   onClose,
@@ -183,7 +183,7 @@ function MobileMenuDrawer({
   );
 }
 
-// Mobile Header
+/* ─── Mobile Header ─── */
 function MobileHeader({
   userName,
   title,
@@ -224,7 +224,7 @@ function MobileHeader({
   );
 }
 
-// Desktop Header
+/* ─── Desktop Header (inside the content area) ─── */
 function DesktopHeader({
   userName,
   title,
@@ -235,10 +235,10 @@ function DesktopHeader({
   subtitle?: string;
 }>) {
   return (
-    <header className="hidden lg:flex items-center justify-between px-8 py-6 border-b border-card-border bg-card/50">
+    <header className="hidden lg:flex items-center justify-between px-8 py-4">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">{title}</h1>
-        {subtitle && <p className="text-muted-foreground mt-1">{subtitle}</p>}
+        <h1 className="text-xl font-bold text-foreground">{title}</h1>
+        {subtitle && <p className="text-muted-foreground text-sm">{subtitle}</p>}
       </div>
       <div className="flex items-center gap-3">
         <span className="text-sm text-muted-foreground">Hola, {userName}</span>
@@ -252,7 +252,9 @@ function DesktopHeader({
   );
 }
 
-// Main Shell Component
+/* ═════════════════════════════════════════════════
+   Main Shell
+   ═════════════════════════════════════════════════ */
 export default function DashboardShell({
   children,
   userName,
@@ -268,18 +270,32 @@ export default function DashboardShell({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-card flex">
+      {/* Sidebar: fondo compartido con el wrapper (bg-card) */}
       <DesktopSidebar currentPath={pathname} />
 
-      <div className="flex-1 flex flex-col min-h-screen">
+      {/* Columna derecha: topbar + contenido */}
+      <div className="flex-1 flex flex-col min-h-screen min-w-0">
+        {/* Mobile header (sigue independiente) */}
         <MobileHeader
           userName={userName}
           title={title}
           onMenuToggle={() => setMobileMenuOpen(true)}
         />
-        <DesktopHeader userName={userName} title={title} subtitle={subtitle} />
 
-        <main className="flex-1 pb-24 lg:pb-8">{children}</main>
+        {/* Desktop: topbar + contenido como panel incrustado */}
+        <div className="hidden lg:flex flex-col flex-1">
+          {/* Topbar (mismo fondo que sidebar, sin borde) */}
+          <DesktopHeader userName={userName} title={title} subtitle={subtitle} />
+
+          {/* Contenido con esquina redondeada superior izquierda */}
+          <main className="flex-1 bg-background rounded-tl-3xl pb-8 shadow-[inset_2px_2px_8px_rgba(0,0,0,0.04)]">
+            {children}
+          </main>
+        </div>
+
+        {/* Mobile: contenido sin esquina redondeada */}
+        <main className="flex-1 pb-24 lg:hidden">{children}</main>
       </div>
 
       <BottomNavigation currentPath={pathname} />
