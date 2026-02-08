@@ -18,6 +18,7 @@ import {
 import {
   getPdfsByDepartment,
   deletePdf,
+  uploadPdfs,
 } from "@/app/actions/pdfs";
 import type { DepartmentWithCount, PdfDocumentInfo } from "@/app/actions/pdfs";
 
@@ -183,12 +184,7 @@ function UploadZone({
         formData.append("files", file);
       }
 
-      const response = await fetch("/api/pdfs/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const res = await response.json();
+      const res = await uploadPdfs(formData);
       setResult({ uploaded: res.uploaded, errors: res.errors });
       if (res.uploaded > 0) {
         setSelectedFiles([]);
@@ -290,7 +286,7 @@ function UploadZone({
             {uploading ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Subiendo...
+                Subiendo y procesando (puede tardar varios minutos)...
               </>
             ) : (
               <>

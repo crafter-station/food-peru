@@ -1,11 +1,17 @@
 "use server";
 
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { db } from "@/db";
 import { departments } from "@/db/schema/departments";
 import { pdfDocuments } from "@/db/schema/pdf-documents";
 import { eq } from "drizzle-orm";
+import { runScrapForDoc } from "@/lib/scrap-doc";
+import {
+  removeDishImagesForDoc,
+  uploadPdfToStorage,
+} from "@/lib/supabase-storage";
 
 const UPLOAD_DIR = path.join(process.cwd(), "uploads", "pdfs");
 
@@ -81,26 +87,64 @@ export async function uploadPdfs(
       continue;
     }
 
+    const buffer = Buffer.from(await file.arrayBuffer());
+    const fileName = generateFileName(file.name);
+    const tempPath = path.join(os.tmpdir(), `scrap-upload-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.pdf`);
+
     try {
-      const fileName = generateFileName(file.name);
-      const filePath = path.join(dir, fileName);
+      await fs.writeFile(tempPath, buffer);
 
-      // Escribir archivo a disco
-      const buffer = Buffer.from(await file.arrayBuffer());
-      await fs.writeFile(filePath, buffer);
+      const [inserted] = await db
+        .insert(pdfDocuments)
+        .values({
+          departmentId: deptId,
+          originalName: file.name,
+          fileName,
+          filePath: tempPath,
+          fileSize: file.size,
+          status: "processing",
+        })
+        .returning({ id: pdfDocuments.id });
 
-      // Registrar en BD
-      await db.insert(pdfDocuments).values({
-        departmentId: deptId,
-        originalName: file.name,
-        fileName,
-        filePath: path.relative(process.cwd(), filePath),
-        fileSize: file.size,
-        status: "pending",
-      });
+      if (!inserted) {
+        await fs.unlink(tempPath).catch(() => {});
+        continue;
+      }
+
+      try {
+        await runScrapForDoc(inserted.id, tempPath);
+      } catch (scrapError) {
+        await db.delete(pdfDocuments).where(eq(pdfDocuments.id, inserted.id));
+        await removeDishImagesForDoc(inserted.id).catch(() => {});
+        await fs.unlink(tempPath).catch(() => {});
+        const msg = scrapError instanceof Error ? scrapError.message : String(scrapError);
+        errors.push(`Error procesando "${file.name}": ${msg}`);
+        continue;
+      }
+
+      const finalPath = path.join(dir, fileName);
+      await fs.rename(tempPath, finalPath);
+
+      const storagePath = `${dept.slug}/${inserted.id}_${fileName}`;
+      try {
+        await uploadPdfToStorage(storagePath, buffer);
+        await db
+          .update(pdfDocuments)
+          .set({
+            filePath: path.relative(process.cwd(), finalPath),
+            storagePath,
+          })
+          .where(eq(pdfDocuments.id, inserted.id));
+      } catch {
+        await db
+          .update(pdfDocuments)
+          .set({ filePath: path.relative(process.cwd(), finalPath) })
+          .where(eq(pdfDocuments.id, inserted.id));
+      }
 
       uploaded++;
     } catch (error) {
+      await fs.unlink(tempPath).catch(() => {});
       const msg = error instanceof Error ? error.message : "Error desconocido";
       errors.push(`Error subiendo "${file.name}": ${msg}`);
     }

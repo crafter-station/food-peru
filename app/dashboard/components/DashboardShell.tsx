@@ -18,7 +18,7 @@ import {
 const NAV_ITEMS = [
   { id: "inicio", label: "Inicio", icon: Home, href: "/dashboard" },
   { id: "recetas", label: "Recetas", icon: Search, href: "/dashboard/recetas" },
-  { id: "compras", label: "Compras", icon: ShoppingCart, href: "/dashboard/compras" },
+  // { id: "compras", label: "Compras", icon: ShoppingCart, href: "/dashboard/compras" },
   { id: "plan", label: "Plan", icon: Calendar, href: "/dashboard/plan" },
   { id: "perfil", label: "Perfil", icon: User, href: "/dashboard/perfil" },
 ];

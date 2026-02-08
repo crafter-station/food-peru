@@ -1,9 +1,9 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
-// import { db } from "@/db";
-// import { userPreferences } from "@/db/schema";
-// import { eq } from "drizzle-orm";
+import { db } from "@/db";
+import { userPreferences } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 export interface OnboardingData {
   householdSize: number;
@@ -22,36 +22,32 @@ export async function saveOnboardingData(data: OnboardingData) {
     throw new Error("Usuario no autenticado");
   }
 
-  // TODO: Descomentar cuando Drizzle esté configurado
-  // await db
-  //   .insert(userPreferences)
-  //   .values({
-  //     userId,
-  //     householdSize: data.householdSize,
-  //     children: data.children,
-  //     cookingTime: data.cookingTime,
-  //     weeklyBudget: data.weeklyBudget,
-  //     shoppingPlaces: data.shoppingPlace,
-  //     restrictions: data.restrictions,
-  //     departamento: data.departamento,
-  //     onboardingCompleted: true,
-  //   })
-  //   .onConflictDoUpdate({
-  //     target: userPreferences.userId,
-  //     set: {
-  //       householdSize: data.householdSize,
-  //       children: data.children,
-  //       cookingTime: data.cookingTime,
-  //       weeklyBudget: data.weeklyBudget,
-  //       shoppingPlaces: data.shoppingPlace,
-  //       restrictions: data.restrictions,
-  //       departamento: data.departamento,
-  //       onboardingCompleted: true,
-  //     },
-  //   });
-
-  // Temporalmente solo logueamos los datos
-  console.log("📝 Onboarding data to save:", { userId, ...data });
+  await db
+    .insert(userPreferences)
+    .values({
+      userId,
+      householdSize: data.householdSize,
+      children: data.children,
+      cookingTime: data.cookingTime,
+      weeklyBudget: data.weeklyBudget,
+      shoppingPlaces: data.shoppingPlace,
+      restrictions: data.restrictions,
+      departamento: data.departamento,
+      onboardingCompleted: true,
+    })
+    .onConflictDoUpdate({
+      target: userPreferences.userId,
+      set: {
+        householdSize: data.householdSize,
+        children: data.children,
+        cookingTime: data.cookingTime,
+        weeklyBudget: data.weeklyBudget,
+        shoppingPlaces: data.shoppingPlace,
+        restrictions: data.restrictions,
+        departamento: data.departamento,
+        onboardingCompleted: true,
+      },
+    });
 
   return { success: true };
 }
@@ -63,14 +59,11 @@ export async function getUserPreferences() {
     return null;
   }
 
-  // TODO: Descomentar cuando Drizzle esté configurado
-  // const preferences = await db.query.userPreferences.findFirst({
-  //   where: eq(userPreferences.userId, userId),
-  // });
-  //
-  // return preferences;
+  const preferences = await db.query.userPreferences.findFirst({
+    where: eq(userPreferences.userId, userId),
+  });
 
-  return null;
+  return preferences ?? null;
 }
 
 export async function checkOnboardingStatus() {
@@ -80,17 +73,13 @@ export async function checkOnboardingStatus() {
     return { completed: false, userId: null };
   }
 
-  // TODO: Descomentar cuando Drizzle esté configurado
-  // const preferences = await db.query.userPreferences.findFirst({
-  //   where: eq(userPreferences.userId, userId),
-  //   columns: { onboardingCompleted: true },
-  // });
-  //
-  // return {
-  //   completed: preferences?.onboardingCompleted ?? false,
-  //   userId,
-  // };
+  const preferences = await db.query.userPreferences.findFirst({
+    where: eq(userPreferences.userId, userId),
+    columns: { onboardingCompleted: true },
+  });
 
-  // Temporalmente siempre retorna false (onboarding no completado)
-  return { completed: false, userId };
+  return {
+    completed: preferences?.onboardingCompleted ?? false,
+    userId,
+  };
 }

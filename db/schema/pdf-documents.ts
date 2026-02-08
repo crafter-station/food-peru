@@ -31,6 +31,8 @@ export const pdfDocuments = pgTable("pdf_documents", {
   fileName: text("file_name").notNull().unique(),
   filePath: text("file_path").notNull(),
   fileSize: integer("file_size").notNull(), // bytes
+  /** Ruta en Supabase Storage (bucket pdfs). Si existe, el scraper puede leer desde Storage. */
+  storagePath: text("storage_path"),
 
   // Estado del procesamiento (scraping)
   status: pdfStatusEnum("status").notNull().default("pending"),
